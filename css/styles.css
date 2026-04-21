@@ -543,6 +543,11 @@ img { max-width: 100%; display: block; }
   gap: 0.4rem;
 }
 
+.project-card .btn {
+  justify-content: center;
+  text-align: center;
+}
+
 /* ── SKILLS ───────────────────────────────────────────────── */
 .skills {
   background: var(--bg-secondary);
