@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jamal Caesar — Software Developer & Systems Builder portfolio" />
+  <title>Jamal Caesar | Software Developer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <!-- ========== STICKY NAVIGATION ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">JC<span class="accent">.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#skills"   class="nav-link">Skills</a></li>
+        <li><a href="#about"    class="nav-link">About</a></li>
+        <li><a href="#contact"  class="nav-link">Contact</a></li>
+        <li>
+          <a href="assets/resume/Jamal_Caesar_Resume.pdf" download class="nav-link nav-cta">
+            Resume
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content fade-in">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name">Jamal Caesar</h1>
+      <h2 class="hero-title">Software Developer <span class="accent">|</span> Systems Builder</h2>
+      <p class="hero-tagline">
+        I build secure, scalable web systems with strong access control and real-world functionality.
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="assets/resume/Jamal_Caesar_Resume.pdf" download class="btn btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Resume (PDF)
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURED PROJECT SECTION ========== -->
+  <section class="section featured-project" id="projects">
+    <div class="container">
+      <div class="section-label fade-up">Featured Project</div>
+      <h2 class="section-title fade-up">Workforce Management System</h2>
+      <p class="section-subtitle fade-up">
+        A full-stack workforce management platform built using Python (Flask) with server-rendered
+        templates. The system includes secure authentication, role-based access control, IP
+        restrictions, reporting, and audit logging.
+      </p>
+
+      <!-- Screenshot placeholders -->
+      <div class="project-screenshots fade-up">
+        <div class="screenshot-card">
+          <div class="screenshot-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+            </svg>
+            Dashboard
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            Reports
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Login
+          </div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            Admin Panel
+          </div>
+        </div>
+      </div>
+
+      <!-- Details grid -->
+      <div class="featured-details">
+        <!-- Key Features -->
+        <div class="detail-card fade-up">
+          <h3 class="detail-title">
+            <span class="detail-icon">⚙</span> Key Features
+          </h3>
+          <ul class="feature-list">
+            <li>Role-based access control</li>
+            <li>MFA authentication</li>
+            <li>IP-based access restriction</li>
+            <li>Clock-in / clock-out tracking</li>
+            <li>Reporting dashboard with exports</li>
+            <li>Session tracking and audit logs</li>
+          </ul>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="detail-card fade-up">
+          <h3 class="detail-title">
+            <span class="detail-icon">🛠</span> Tech Stack
+          </h3>
+          <div class="tech-stack-grid">
+            <div class="tech-group">
+              <span class="tech-group-label">Backend</span>
+              <span class="tech-tag">Python (Flask)</span>
+              <span class="tech-tag">SQLAlchemy</span>
+            </div>
+            <div class="tech-group">
+              <span class="tech-group-label">Frontend</span>
+              <span class="tech-tag">HTML (Jinja)</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <div class="tech-group">
+              <span class="tech-group-label">Database</span>
+              <span class="tech-tag">SQL</span>
+            </div>
+            <div class="tech-group">
+              <span class="tech-group-label">Config</span>
+              <span class="tech-tag">YAML</span>
+              <span class="tech-tag">Markdown</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Role -->
+        <div class="detail-card detail-card--wide fade-up">
+          <h3 class="detail-title">
+            <span class="detail-icon">👤</span> My Role
+          </h3>
+          <p class="role-description">
+            Designed and developed the full system architecture, security model, database structure,
+            and user interface. Responsible for every layer of the stack — from authentication flows
+            and database schema design to front-end templates and admin tooling.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== OTHER PROJECTS SECTION ========== -->
+  <section class="section other-projects" id="other-projects">
+    <div class="container">
+      <div class="section-label fade-up">More Work</div>
+      <h2 class="section-title fade-up">Other Projects</h2>
+
+      <div class="projects-grid">
+
+        <!-- Pokedex API App -->
+        <div class="project-card fade-up">
+          <div class="project-card-header">
+            <div class="project-icon">🎮</div>
+            <h3 class="project-name">Pokedex API App</h3>
+          </div>
+          <p class="project-desc">
+            Interactive Pokedex that fetches live Pokémon data from the PokéAPI, displays stats,
+            sprites, and abilities with a clean card interface.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">HTML/CSS</span>
+          </div>
+          <a href="#" class="btn btn-sm btn-outline">View Code</a>
+        </div>
+
+        <!-- React Digital Clock -->
+        <div class="project-card fade-up">
+          <div class="project-card-header">
+            <div class="project-icon">🕐</div>
+            <h3 class="project-name">React Digital Clock</h3>
+          </div>
+          <p class="project-desc">
+            A real-time digital clock built with React hooks, displaying live time updates with
+            a sleek dark UI and animated transitions.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <a href="#" class="btn btn-sm btn-outline">View Code</a>
+        </div>
+
+        <!-- Tic Tac Toe Game -->
+        <div class="project-card fade-up">
+          <div class="project-card-header">
+            <div class="project-icon">❌</div>
+            <h3 class="project-name">Tic Tac Toe Game</h3>
+          </div>
+          <p class="project-desc">
+            Two-player Tic Tac Toe with win detection, draw detection, score tracking, and a
+            smooth restart animation.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <a href="#" class="btn btn-sm btn-outline">View Code</a>
+        </div>
+
+        <!-- Stopwatch App -->
+        <div class="project-card fade-up">
+          <div class="project-card-header">
+            <div class="project-icon">⏱</div>
+            <h3 class="project-name">Stopwatch App</h3>
+          </div>
+          <p class="project-desc">
+            Precision stopwatch with start, stop, lap recording, and reset functionality. Stores
+            lap history in session and renders updates in real time.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <a href="#" class="btn btn-sm btn-outline">View Code</a>
+        </div>
+
+        <!-- Calculator App -->
+        <div class="project-card fade-up">
+          <div class="project-card-header">
+            <div class="project-icon">🔢</div>
+            <h3 class="project-name">Calculator App</h3>
+          </div>
+          <p class="project-desc">
+            Fully functional calculator supporting arithmetic operations, keyboard input, expression
+            history, and clean error handling.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <a href="#" class="btn btn-sm btn-outline">View Code</a>
+        </div>
+
+        <!-- Chess Game -->
+        <div class="project-card fade-up">
+          <div class="project-card-header">
+            <div class="project-icon">♟</div>
+            <h3 class="project-name">Chess Game</h3>
+          </div>
+          <p class="project-desc">
+            Browser-based chess game with legal move validation, check/checkmate detection, and
+            interactive piece selection highlighting.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <a href="#" class="btn btn-sm btn-outline">View Code</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SKILLS SECTION ========== -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section-label fade-up">Expertise</div>
+      <h2 class="section-title fade-up">Skills</h2>
+
+      <div class="skills-grid">
+
+        <!-- Backend -->
+        <div class="skill-category fade-up">
+          <div class="skill-category-header">
+            <div class="skill-category-icon backend-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <h3>Backend</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <span class="skill-name">Python (Flask)</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">SQLAlchemy</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">API Integration</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="skill-category fade-up">
+          <div class="skill-category-header">
+            <div class="skill-category-icon frontend-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <h3>Frontend</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <span class="skill-name">HTML &amp; CSS</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">JavaScript</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">React</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Systems -->
+        <div class="skill-category fade-up">
+          <div class="skill-category-header">
+            <div class="skill-category-icon systems-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <h3>Systems</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <span class="skill-name">Role-based Access Control</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="93"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Authentication Systems</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Database Design</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="87"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="section about" id="about">
+    <div class="container about-grid">
+      <div class="about-text fade-up">
+        <div class="section-label">Who I Am</div>
+        <h2 class="section-title">About Me</h2>
+        <p>
+          I'm a software developer focused on building real-world systems that emphasize security,
+          structure, and usability. My work centers on full-stack web development — from designing
+          robust database schemas and authentication flows to crafting clean, responsive front-end
+          interfaces.
+        </p>
+        <p>
+          I care deeply about building software that works the way the real world demands: with
+          proper access control, reliable data handling, and interfaces that don't get in the way.
+          Every project I take on is an opportunity to engineer something that's both technically
+          sound and genuinely useful.
+        </p>
+        <a href="assets/resume/Jamal_Caesar_Resume.pdf" download class="btn btn-primary" style="margin-top: 1.5rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Resume
+        </a>
+      </div>
+      <div class="about-card fade-up">
+        <div class="about-stat">
+          <span class="about-stat-num">6+</span>
+          <span class="about-stat-label">Projects Built</span>
+        </div>
+        <div class="about-divider"></div>
+        <div class="about-stat">
+          <span class="about-stat-num">Full</span>
+          <span class="about-stat-label">Stack Coverage</span>
+        </div>
+        <div class="about-divider"></div>
+        <div class="about-stat">
+          <span class="about-stat-num">RBAC</span>
+          <span class="about-stat-label">Security Focus</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="section contact" id="contact">
+    <div class="container contact-inner">
+      <div class="section-label fade-up">Get In Touch</div>
+      <h2 class="section-title fade-up">Contact</h2>
+      <p class="section-subtitle fade-up">
+        Interested in working together or have a question? Reach out through any of the channels below.
+      </p>
+
+      <div class="contact-cards fade-up">
+        <a href="mailto:your@email.com" class="contact-card">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <span class="contact-card-label">Email</span>
+          <span class="contact-card-value">your@email.com</span>
+        </a>
+
+        <a href="https://github.com/CyzarVII" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35
+                       6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65
+                       16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5
+                       4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9
+                       18.13V22"/>
+            </svg>
+          </div>
+          <span class="contact-card-label">GitHub</span>
+          <span class="contact-card-value">github.com/CyzarVII</span>
+        </a>
+
+        <a href="assets/resume/Jamal_Caesar_Resume.pdf" download class="contact-card">
+          <div class="contact-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          <span class="contact-card-label">Resume</span>
+          <span class="contact-card-value">Download PDF</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Jamal Caesar</span>
+      <span class="footer-sep">·</span>
+      <span class="footer-copy">© <span id="year"></span> All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
