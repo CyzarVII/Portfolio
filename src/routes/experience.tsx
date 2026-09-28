@@ -9,12 +9,12 @@ export const Route = createFileRoute("/experience")({
       {
         name: "description",
         content:
-          "Professional experience of Jamal Caesar across TD Insurance, Buchanan Technologies, and Innovatia, plus education.",
+          "Jamal Caesar's current IT technician role at Clarence Fitzroy Bryant College, earlier support and web experience, and education.",
       },
       { property: "og:title", content: "Experience | Jamal Caesar" },
       {
         property: "og:description",
-        content: "Four years of technical support and software work, plus formal education.",
+        content: "Current college IT support, earlier service-desk and web roles, and formal education.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

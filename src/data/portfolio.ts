@@ -2,24 +2,25 @@ export const profile = {
   name: "Jamal Caesar",
   initials: "JC",
   role: "Software Developer",
-  secondaryRole: "Technical Support Specialist",
+  secondaryRole: "IT Technician",
   location: "St. Kitts & Nevis",
   email: "jamal.a.a.caesar@gmail.com",
   github: "https://github.com/CyzarVII",
+  linkedin: "https://www.linkedin.com/in/jamalcaesar",
   resume: "https://github.com/CyzarVII/Portfolio/raw/main/assets/resume/Jamal_Caesar_Resume.pdf",
   tagline:
     "I design, build, and maintain reliable systems, from role-secured applications to full-stack web platforms.",
   summary:
-    "A results-driven Software Developer based in St. Kitts with a track record of designing, coding, and maintaining production systems using modern technologies and proven engineering practices.",
+    "A St. Kitts-based developer and IT technician at Clarence Fitzroy Bryant College, combining user-focused web development with hands-on support across education, financial services, and managed services.",
   about: [
-    "I am a Software Developer based in St. Kitts with a strong track record of designing, coding, and maintaining web and desktop applications using modern technologies and industry best practices.",
-    "I hold a Technical Diploma in Web Programming from Nova Scotia Community College and an Associate Degree in Information Technology from Clarence Fitzroy Bryant College.",
-    "My background also includes several years of professional technical support experience with TD Insurance, Buchanan Technologies, and Innovatia. In those roles I supported hundreds of clients, resolved complex incidents, and produced clear documentation. That experience strengthened my problem solving, communication, and attention to detail. I bring those qualities into every system I build today.",
+    "I build user-focused web solutions and support the technology people rely on every day. At Clarence Fitzroy Bryant College, I help students, staff, and faculty with Microsoft 365, Canvas and other learning platforms, account access, devices, and connectivity.",
+    "I hold a Technical Diploma in Computer Science (Web Programming) from Nova Scotia Community College and an Associate Degree in Information Technology from Clarence Fitzroy Bryant College.",
+    "Previously, I supported customers and employees at TD Insurance, Buchanan Technologies, and Innovatia. My work spans service-desk triage, clear documentation, customer training, and practical improvements to support workflows.",
   ],
 } as const;
 
 export const stats = [
-  { value: "4+", label: "Years in tech" },
+  { value: "7+", label: "Years in tech" },
   { value: "500+", label: "Clients supported" },
   { value: "90%", label: "First-call resolution" },
   { value: "2", label: "Production systems shipped" },
@@ -27,7 +28,7 @@ export const stats = [
 
 export const education = [
   {
-    credential: "Technical Diploma, Web Programming",
+    credential: "Technical Diploma in Computer Science, Web Programming",
     school: "Nova Scotia Community College",
     location: "Halifax, NS",
   },
@@ -48,16 +49,28 @@ export const skillGroups = [
     items: ["HTML5 & CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Responsive design", "Jinja templates"],
   },
   {
-    title: "Desktop & Tooling",
-    items: ["Electron", "PyInstaller packaging", "Waitress", "Git & GitHub", "YAML / Markdown config", "Excel & PDF pipelines"],
+    title: "IT & Tooling",
+    items: ["Microsoft 365", "Windows support", "Canvas / LMS", "SSO", "Laptop deployment", "Domain joining", "Printers & networking", "Git & GitHub"],
   },
   {
     title: "Support & Soft Skills",
-    items: ["Testing & debugging", "Incident triage", "ServiceNow ticketing", "Technical documentation", "Communication", "Teamwork"],
+    items: ["Testing & debugging", "Incident triage", "Spiceworks", "ServiceNow", "User guides", "Technical documentation", "Customer training"],
   },
 ] as const;
 
 export const experience = [
+  {
+    period: "Present",
+    location: "St. Kitts & Nevis",
+    title: "IT Technician",
+    company: "Clarence Fitzroy Bryant College (CFBC)",
+    points: [
+      "Manage and prioritize support requests in Spiceworks, keeping clear ticket notes and a consistently high level of resolution.",
+      "Support students, staff, and faculty with Microsoft 365, Canvas and other learning platforms, SSO, and account access.",
+      "Configure and deploy laptops with Windows updates, domain joining, software installation, and readiness checks.",
+      "Troubleshoot printers, workstations, connectivity, and access points; create user guides and QR-based support resources.",
+    ],
+  },
   {
     period: "Nov 2022 to Jul 2024",
     location: "Halifax, NS",
@@ -102,12 +115,14 @@ export const experience = [
     ],
   },
   {
-    period: "Earlier",
-    location: "St. Kitts",
-    title: "Assistant Webmaster (Part Time)",
-    company: "Local web team",
+    period: "Nov 2018 to Sep 2019",
+    location: "Basseterre, St. Kitts & Nevis",
+    title: "Assistant Webmaster",
+    company: "ITTAE.TECH",
     points: [
-      "Maintained and updated site content, fixed layout issues, and supported day-to-day publishing.",
+      "Updated website content and maintained accurate information across web pages.",
+      "Used search analytics and reporting to identify opportunities that supported a 35% increase in web traffic.",
+      "Optimized online assets and helped business units with content management best practices.",
     ],
   },
 ] as const;

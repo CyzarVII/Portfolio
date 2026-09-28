@@ -37,6 +37,12 @@ const channels = [
     note: "Public repositories and ongoing experiments.",
   },
   {
+    label: "LinkedIn",
+    value: "linkedin.com/in/jamalcaesar",
+    href: profile.linkedin,
+    note: "Professional experience and connections.",
+  },
+  {
     label: "Résumé",
     value: "Download PDF",
     href: profile.resume,

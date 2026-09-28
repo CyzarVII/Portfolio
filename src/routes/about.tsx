@@ -9,12 +9,12 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Jamal Caesar is a software developer in St. Kitts with a technical diploma in web programming and years of enterprise support experience.",
+          "Jamal Caesar is a developer and IT technician at Clarence Fitzroy Bryant College with web programming and service-desk experience.",
       },
       { property: "og:title", content: "About | Jamal Caesar" },
       {
         property: "og:description",
-        content: "Software developer in St. Kitts with a strong support and documentation background.",
+        content: "Developer and college IT technician in St. Kitts with web, support, and documentation experience.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

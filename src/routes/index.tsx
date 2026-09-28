@@ -7,7 +7,7 @@ import workforceCover from "@/assets/workforce-cover.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Jamal Caesar | Software Developer & Technical Support Specialist" },
+      { title: "Jamal Caesar | Software Developer & IT Technician" },
       {
         name: "description",
         content:
