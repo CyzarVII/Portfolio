@@ -23,7 +23,7 @@ export const stats = [
   { value: "7+", label: "Years in tech" },
   { value: "500+", label: "Clients supported" },
   { value: "90%", label: "First-call resolution" },
-  { value: "2", label: "Production systems shipped" },
+  { value: "4", label: "Production systems shipped" },
 ] as const;
 
 export const education = [
@@ -222,6 +222,30 @@ export const projects: Project[] = [
     year: "2026",
     category: "Full-Stack",
     tech: ["Python (Flask)", "SQLAlchemy", "Jinja", "JavaScript", "SQL"],
+    featured: true,
+    private: true,
+  },
+  {
+    slug: "digital-inventory-system",
+    name: "Digital Inventory System",
+    tagline: "Campus equipment inventory and lending with QR labels and Microsoft 365 sign-in.",
+    description:
+      "A browser-based inventory platform for CFBC built with Node.js, Express, and SQLite. Tracks equipment across configurable locations, lends items with QR/Code128 labels and timed loans, imports Excel workbooks through a reviewed mapping flow, and exports Excel and PDF registers. Includes JSON backup and restore, conflict-safe editing, and Microsoft 365 borrower sign-in.",
+    year: "2026",
+    category: "Full-Stack",
+    tech: ["Node.js", "Express", "SQLite", "JavaScript", "Microsoft 365"],
+    featured: true,
+    private: true,
+  },
+  {
+    slug: "applicant-tracking-system",
+    name: "Applicant Tracking System",
+    tagline: "HR vacancy management with full field history and concurrency protection.",
+    description:
+      "A Django and Bootstrap vacancy management application for CFBC HR. Manages all 33 vacancy fields with EC$ salary handling, closing-date validation, optimistic concurrency protection, and a per-field change history. Ships with server-side permissions, dashboard counts, search and filters, and a responsive collapsible sidebar.",
+    year: "2026",
+    category: "Full-Stack",
+    tech: ["Python", "Django", "Bootstrap", "SQLite"],
     featured: true,
     private: true,
   },
