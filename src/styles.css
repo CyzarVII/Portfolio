@@ -150,16 +150,716 @@
 }
 
 @utility card-elevated {
-  background-color: var(--color-card);
+  background-color: color-mix(in oklab, var(--color-card) 80%, transparent);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
   transition:
-    transform 240ms ease,
-    border-color 240ms ease,
-    box-shadow 240ms ease;
+    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 300ms ease,
+    box-shadow 300ms ease;
   &:hover {
     transform: translateY(-4px);
-    border-color: color-mix(in oklab, var(--primary) 45%, transparent);
-    box-shadow: var(--shadow-elegant);
+    border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+    box-shadow:
+      var(--shadow-elegant),
+      0 0 0 1px color-mix(in oklab, var(--primary) 18%, transparent);
+    /* --mx/--my are set by useCardSpotlight so the glow follows the pointer. */
+    background-image: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--primary) 14%, transparent),
+      transparent 45%
+    );
   }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Animated conic border that sweeps around the element. */
+@utility glow-border {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--color-card), var(--color-card)) padding-box,
+    conic-gradient(
+        from var(--border-angle),
+        var(--border) 0 55%,
+        var(--primary) 72%,
+        var(--accent) 84%,
+        var(--border) 96%
+      )
+      border-box;
+  animation: border-spin 6s linear infinite;
+}
+
+/* Sci-fi corner brackets on two opposite corners. */
+@utility hud-corners {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+  }
+  &::before {
+    top: -7px;
+    left: -7px;
+    border-top: 2px solid var(--primary);
+    border-left: 2px solid var(--primary);
+  }
+  &::after {
+    right: -7px;
+    bottom: -7px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+  }
+}
+
+/* Light sweep across a button on hover. */
+@utility btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, oklch(1 0 0 / 35%) 50%, transparent 70%);
+    translate: -120% 0;
+    transition: translate 700ms ease;
+    pointer-events: none;
+  }
+  &:hover::after {
+    translate: 120% 0;
+  }
+}
+
+@keyframes border-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+/* Page backdrop (components/backdrop.tsx). */
+.backdrop-grid {
+  opacity: 0.8;
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black, transparent 75%);
+}
+
+.aurora {
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+}
+
+.aurora-a {
+  top: -30vmax;
+  left: -15vmax;
+  background: radial-gradient(circle, color-mix(in oklab, var(--primary) 22%, transparent), transparent 65%);
+  animation: aurora-drift 22s ease-in-out infinite alternate;
+}
+
+.aurora-b {
+  top: 25%;
+  right: -30vmax;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 10%, transparent), transparent 65%);
+  animation: aurora-drift 28s ease-in-out infinite alternate-reverse;
+}
+
+.aurora-c {
+  bottom: -35vmax;
+  left: 20%;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--primary-glow) 12%, transparent),
+    transparent 65%
+  );
+  animation: aurora-drift 32s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift {
+  to {
+    transform: translate(10vmax, 8vmax) scale(1.15);
+  }
+}
+
+/*
+ * Scroll reveal (hooks/use-reveal.ts). Uses `translate` rather than `transform` so it
+ * doesn't fight card hover lifts; the stagger delay only applies to the reveal itself.
+ */
+html[data-js] [data-reveal] {
+  opacity: 0;
+  translate: 0 32px;
+  filter: blur(8px);
+  transition-property: opacity, translate, filter, transform, border-color, box-shadow;
+  transition-duration: 900ms, 900ms, 900ms, 300ms, 300ms, 300ms;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay:
+    var(--reveal-delay, 0ms), var(--reveal-delay, 0ms), var(--reveal-delay, 0ms), 0ms, 0ms, 0ms;
+}
+
+html[data-js] [data-reveal="left"] {
+  translate: -48px 0;
+}
+
+html[data-js] [data-reveal="right"] {
+  translate: 48px 0;
+}
+
+html[data-js] [data-reveal="zoom"] {
+  translate: 0 0;
+  scale: 0.92;
+  transition-property: opacity, translate, filter, transform, border-color, box-shadow, scale;
+}
+
+html[data-js][data-ready] [data-reveal].is-visible {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  filter: none;
+}
+
+.caret::after {
+  content: "▍";
+  margin-left: 2px;
+  color: var(--primary);
+  animation: welcome-blink 900ms steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-js] [data-reveal] {
+    translate: 0 0;
+    scale: 1;
+    filter: none;
+  }
+  .aurora,
+  .glow-border {
+    animation: none;
+  }
+}
+
+/* Welcome screen: futuristic boot intro (see components/welcome-screen.tsx). */
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  overflow: hidden;
+  background-color: var(--background);
+  cursor: pointer;
+}
+
+.welcome-screen[data-phase="exit"] {
+  animation: welcome-power-off 700ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.welcome-screen[data-phase="exit"] .welcome-content {
+  animation: welcome-zoom-out 500ms ease-in forwards;
+}
+
+.welcome-content {
+  animation: welcome-zoom-in 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.welcome-floor {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: -20%;
+  height: 75%;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primary) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 45%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(420px) rotateX(64deg);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 60%);
+  animation: welcome-grid-scroll 900ms linear infinite;
+}
+
+.welcome-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(40% 35% at 50% 45%, color-mix(in oklab, var(--primary) 28%, transparent), transparent 70%),
+    radial-gradient(30% 25% at 50% 60%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 70%);
+  animation: welcome-pulse 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.welcome-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    oklch(0 0 0 / 28%) 3px
+  );
+  pointer-events: none;
+}
+
+.welcome-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--primary) 12%, transparent),
+    transparent
+  );
+  animation: welcome-beam 3s linear infinite;
+  pointer-events: none;
+}
+
+.welcome-glitch {
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 24px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+.welcome-glitch::before,
+.welcome-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.welcome-glitch::before {
+  color: var(--accent);
+  animation: welcome-glitch-a 2.2s steps(1) infinite;
+}
+
+.welcome-glitch::after {
+  color: var(--primary);
+  animation: welcome-glitch-b 1.7s steps(1) infinite;
+}
+
+/* "Loading..." snippets type out character by character (monospace, so 1ch = 1 char). */
+.welcome-type {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: welcome-typing 320ms steps(var(--chars)) forwards;
+}
+
+.welcome-dots::after {
+  content: "";
+  display: inline-block;
+  width: 3ch;
+  text-align: left;
+  animation: welcome-dots 1.2s steps(1) infinite;
+}
+
+@keyframes welcome-typing {
+  to {
+    width: calc(var(--chars) * 1ch);
+  }
+}
+
+@keyframes welcome-dots {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+}
+
+@keyframes welcome-grid-scroll {
+  to {
+    background-position: 0 64px;
+  }
+}
+
+@keyframes welcome-pulse {
+  50% {
+    opacity: 0.65;
+  }
+}
+
+@keyframes welcome-beam {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(400%);
+  }
+}
+
+@keyframes welcome-glitch-a {
+  0% {
+    clip-path: inset(0 0 85% 0);
+    transform: translate(-3px, 0);
+  }
+  20% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(2px, -1px);
+  }
+  40% {
+    clip-path: inset(75% 0 5% 0);
+    transform: translate(-2px, 1px);
+  }
+  60% {
+    clip-path: inset(100% 0 0 0);
+  }
+  85% {
+    clip-path: inset(15% 0 65% 0);
+    transform: translate(3px, 0);
+  }
+}
+
+@keyframes welcome-glitch-b {
+  0% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translate(3px, 0);
+  }
+  25% {
+    clip-path: inset(100% 0 0 0);
+  }
+  55% {
+    clip-path: inset(10% 0 75% 0);
+    transform: translate(-3px, 1px);
+  }
+  75% {
+    clip-path: inset(45% 0 35% 0);
+    transform: translate(2px, 0);
+  }
+}
+
+@keyframes welcome-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes welcome-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(10px);
+  }
+}
+
+@keyframes welcome-zoom-out {
+  to {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(8px);
+  }
+}
+
+/* CRT-style shutdown: collapse to a bright line, then to a point. */
+@keyframes welcome-power-off {
+  0% {
+    clip-path: inset(0 0 0 0);
+    filter: brightness(1);
+  }
+  55% {
+    clip-path: inset(49.6% 0 49.6% 0);
+    filter: brightness(2.5);
+  }
+  100% {
+    clip-path: inset(50% 50% 50% 50%);
+    filter: brightness(4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-screen,
+  .welcome-screen *,
+  .welcome-screen *::before,
+  .welcome-screen *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Shimmering headline text. */
+@utility text-shine {
+  background-image: linear-gradient(
+    100deg,
+    var(--foreground) 40%,
+    var(--primary-glow) 50%,
+    var(--foreground) 60%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shine 6s linear infinite;
+}
+
+@keyframes text-shine {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -150% 0;
+  }
+}
+
+/* Hero code window lines appear one after another once the intro is gone. */
+html[data-js]:not([data-ready]) .code-line {
+  opacity: 0;
+}
+
+html[data-ready] .code-line {
+  animation: code-line-in 450ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 70ms + 450ms);
+}
+
+@keyframes code-line-in {
+  from {
+    opacity: 0;
+    translate: -10px 0;
+  }
+}
+
+/* In-app navigation: each page fades and rises in (main is keyed by pathname). */
+.page-transition {
+  animation: page-in 550ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+    filter: blur(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-shine,
+  .code-line,
+  .page-transition {
+    animation: none !important;
+  }
+}
+
+/* ---------- Futuristic link hovers ---------- */
+
+/* Nav links: HUD brackets snap in, neon glow, and a gradient scanline underneath. */
+@utility nav-link {
+  position: relative;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary),
+    var(--accent),
+    transparent
+  );
+  background-repeat: no-repeat;
+  background-position: 50% calc(100% - 3px);
+  background-size: 0% 1px;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    background-size 400ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    text-shadow 200ms ease;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 200ms ease,
+      translate 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  &::before {
+    top: 1px;
+    left: 1px;
+    border-top: 1.5px solid var(--primary);
+    border-left: 1.5px solid var(--primary);
+    translate: -6px -6px;
+  }
+  &::after {
+    right: 1px;
+    bottom: 1px;
+    border-right: 1.5px solid var(--accent);
+    border-bottom: 1.5px solid var(--accent);
+    translate: 6px 6px;
+  }
+  &:hover,
+  &:focus-visible {
+    color: var(--primary);
+    text-shadow: 0 0 14px color-mix(in oklab, var(--primary) 75%, transparent);
+    background-size: 75% 1px;
+  }
+  &:hover::before,
+  &:hover::after,
+  &:focus-visible::before,
+  &:focus-visible::after {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Inline text links: gradient underline wipes in, text glows, the arrow slides. */
+@utility link-fx {
+  background-image: linear-gradient(90deg, var(--primary), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  padding-bottom: 2px;
+  transition:
+    background-size 450ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    text-shadow 200ms ease,
+    color 200ms ease;
+  & > [aria-hidden] {
+    display: inline-block;
+    transition: translate 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+    text-shadow: 0 0 14px color-mix(in oklab, var(--primary) 65%, transparent);
+  }
+  &:hover > [aria-hidden],
+  &:focus-visible > [aria-hidden] {
+    translate: 5px 0;
+  }
+}
+
+/* Footer links: a terminal prompt slides in ahead of the text. */
+@utility footer-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  color: var(--muted-foreground);
+  transition:
+    color 200ms ease,
+    text-shadow 200ms ease;
+  &::before {
+    content: ">";
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    font-family: var(--font-mono);
+    color: var(--accent);
+    transition:
+      width 250ms ease,
+      margin 250ms ease,
+      opacity 250ms ease;
+  }
+  &:hover,
+  &:focus-visible {
+    color: var(--primary);
+    text-shadow: 0 0 12px color-mix(in oklab, var(--primary) 60%, transparent);
+  }
+  &:hover::before,
+  &:focus-visible::before {
+    width: 1ch;
+    margin-right: 0.6ch;
+    opacity: 1;
+  }
+}
+
+/* Buttons: neon outer glow plus a soft inner glow on hover. */
+@utility btn-glow {
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 300ms ease,
+    translate 200ms ease;
+  &:hover,
+  &:focus-visible {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--primary) 45%, transparent),
+      0 0 28px -4px color-mix(in oklab, var(--primary) 70%, transparent),
+      inset 0 0 18px -6px color-mix(in oklab, var(--primary) 70%, transparent);
+  }
+}
+
+/* About page avatar: orbiting HUD rings. */
+.orbit-ring {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.orbit-ring-a {
+  stroke-dasharray: 3 9;
+  opacity: 0.7;
+  animation: orbit-spin 16s linear infinite;
+}
+
+.orbit-ring-b {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-dasharray: 110 50 25 60;
+  filter: drop-shadow(0 0 6px var(--accent));
+  animation: orbit-spin 5s linear infinite reverse;
+}
+
+.orbit-ring-c {
+  stroke-dasharray: 60 20;
+  opacity: 0.55;
+  filter: drop-shadow(0 0 4px var(--primary));
+  animation: orbit-spin 8s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring {
+    animation: none;
+  }
+}
+
+/* Dark, thin scrollbars with a purple thumb (page and any scrollable panels). */
+html {
+  scrollbar-color: color-mix(in oklab, var(--primary) 55%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

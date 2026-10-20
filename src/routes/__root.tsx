@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -13,6 +14,9 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { WelcomeScreen } from "@/components/welcome-screen";
+import { Backdrop } from "@/components/backdrop";
+import { useCardSpotlight, useRevealOnScroll } from "@/hooks/use-reveal";
 
 function NotFoundComponent() {
   return (
@@ -86,6 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Portfolio of Jamal Caesar, software developer and technical support specialist based in St. Kitts.",
       },
       { name: "author", content: "Jamal Caesar" },
+      { name: "theme-color", content: "#110d1c" },
       { property: "og:title", content: "Jamal Caesar | Software Developer" },
       {
         property: "og:description",
@@ -97,7 +102,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -114,9 +121,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <HeadContent />
+        {/* Scroll-reveal content is only hidden when JS runs; the timeout is a safety net. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.setAttribute("data-js","");setTimeout(function(){var d=document.documentElement;if(!d.hasAttribute("data-ready"))d.removeAttribute("data-js")},9000);`,
+          }}
+        />
       </head>
       <body>
         {children}
@@ -128,12 +141,18 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  useRevealOnScroll();
+  useCardSpotlight();
 
   return (
     <QueryClientProvider client={queryClient}>
+      <WelcomeScreen />
+      <Backdrop />
       <div className="flex min-h-screen flex-col">
         <SiteHeader />
-        <main className="flex-1">
+        {/* Keyed by path so each link click replays the page-in transition. */}
+        <main key={pathname} className="page-transition flex-1">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </main>

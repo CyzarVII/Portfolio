@@ -19,6 +19,12 @@ export const profile = {
   ],
 } as const;
 
+export const github = {
+  username: "CyzarVII",
+  // Public repos kept out of the live GitHub feed (personal or this site itself).
+  exclude: ["Portfolio", "TiiJay"] as string[],
+};
+
 export const stats = [
   { value: "7+", label: "Years in tech" },
   { value: "500+", label: "Clients supported" },

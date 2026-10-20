@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { profile } from "@/data/portfolio";
+import { ScrambleText } from "@/components/scramble-text";
 
 const links = [
   { to: "/", label: "Home" },
@@ -25,14 +26,15 @@ export function SiteHeader() {
     <header
       className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
         scrolled
-          ? "border-border bg-background/85 backdrop-blur-xl"
+          ? "border-primary/20 bg-background/75 shadow-[0_10px_40px_-20px] shadow-primary/40 backdrop-blur-xl"
           : "border-transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link to="/" className="font-display text-lg font-bold tracking-tight">
+          <span className="font-mono text-primary">&lt;</span>
           {profile.initials}
-          <span className="text-primary">.</span>
+          <span className="font-mono text-accent"> /&gt;</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -41,20 +43,20 @@ export function SiteHeader() {
               key={l.to}
               to={l.to}
               activeOptions={{ exact: l.to === "/" }}
-              activeProps={{ className: "text-foreground" }}
+              activeProps={{ className: "bg-secondary/70 text-foreground" }}
               inactiveProps={{ className: "text-muted-foreground" }}
-              className="rounded-full px-4 py-2 text-sm transition-colors hover:text-foreground"
+              className="nav-link rounded-md px-4 py-2 text-sm"
             >
-              {l.label}
+              <ScrambleText text={l.label} />
             </Link>
           ))}
           <a
             href={profile.github}
             target="_blank"
             rel="noreferrer"
-            className="ml-2 rounded-full border border-primary/40 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+            className="btn-shine btn-glow ml-2 rounded-full border border-primary/40 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10"
           >
-            GitHub
+            <ScrambleText text="GitHub" />
           </a>
         </nav>
 
@@ -82,10 +84,9 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               activeOptions={{ exact: l.to === "/" }}
               activeProps={{ className: "text-foreground" }}
-              inactiveProps={{ className: "text-muted-foreground" }}
-              className="block py-2.5 text-sm"
+              className="footer-link flex py-2.5 text-sm"
             >
-              {l.label}
+              <ScrambleText text={l.label} />
             </Link>
           ))}
         </nav>

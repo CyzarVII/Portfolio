@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { revealDelay } from "@/lib/site-ready";
 import { profile } from "@/data/portfolio";
 import { PageHeader } from "@/components/section";
 
@@ -61,12 +62,14 @@ function ContactPage() {
 
       <div className="mx-auto max-w-6xl px-6 pb-24">
         <div className="grid gap-5 md:grid-cols-3">
-          {channels.map((c) => (
+          {channels.map((c, i) => (
             <a
               key={c.label}
               href={c.href}
               target={c.href.startsWith("mailto:") ? undefined : "_blank"}
               rel="noreferrer"
+              data-reveal
+              style={revealDelay(i * 100)}
               className="card-elevated group rounded-2xl p-7"
             >
               <p className="text-xs uppercase tracking-[0.2em] text-primary">{c.label}</p>
@@ -78,7 +81,10 @@ function ContactPage() {
           ))}
         </div>
 
-        <div className="halo relative mt-12 overflow-hidden rounded-3xl border border-border bg-card px-8 py-14 text-center">
+        <div
+          data-reveal="zoom"
+          className="glow-border halo relative mt-12 overflow-hidden rounded-3xl px-8 py-14 text-center"
+        >
           <h2 className="relative text-2xl font-bold sm:text-3xl">
             Currently based in {profile.location}
           </h2>
@@ -88,7 +94,7 @@ function ContactPage() {
           </p>
           <a
             href={`mailto:${profile.email}`}
-            className="relative mt-8 inline-flex rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+            className="btn-shine btn-glow relative mt-8 inline-flex rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground hover:-translate-y-0.5"
           >
             Email me
           </a>
